@@ -1,0 +1,51 @@
+body{
+    color:rgb(0, 0, 0);
+    height: 100vh;
+    margin: 0px;
+    font-family: Arial, sans-serif;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+ /*    grid-template-rows: 1fr 30fr; */
+
+}
+
+.header {
+    background-color: rgb(212, 150, 69);
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.main-content {
+    background-color: beige;
+    padding: 30px;
+    height:auto;
+    flex-grow: 1;
+ 
+}
+
+.bookshelf {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.book-card {
+    height: 300px;
+    width: 230px;
+    background-color: blanchedalmond;
+    border: solid black 2px;
+    margin: 20px;
+
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    justify-content: end;
+    background-color: bisque;
+}

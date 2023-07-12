@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books! 📖</title>
+    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="stylesv2.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">My Library</div>
+
+        <div class="main-content">---Cards---
+            <div class="bookshelf">
+                <div class="book-card" data-bookIndex=0></div>
+                <div class="book-card" data-bookIndex=1></div>
+                <div class="book-card"></div>
+                <div class="book-card" data-bookIndex=0></div>
+                <div class="book-card" data-bookIndex=1></div>
+                <div class="book-card"></div><div class="book-card" data-bookIndex=0></div>
+                <div class="book-card" data-bookIndex=1></div>
+                <div class="book-card"></div><div class="book-card" data-bookIndex=0></div>
+                <div class="book-card" data-bookIndex=1></div>
+                <div class="book-card"></div><div class="book-card" data-bookIndex=0></div>
+                <div class="book-card" data-bookIndex=1></div>
+                <div class="book-card"></div>
+            </div>
+
+
+            <div class="add-book">
+            
+                <form class="add-book-form">
+
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" placeholder="e.g. Lord of The Rings">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="autho">Author</label>
+                        <input type="text" name="author" id="author" placeholder="e.g. George RR Tolkien">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pages">Pages</label>
+                        <input type="number" name="pages" id="pages" placeholder="e.g. 274">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="read">Book Already Read</label>
+                        <input type="checkbox" name="read" id="read">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit">Submit</button>
+                    </div>
+
+                </form>
+
+                
+                <button class="add-book-btn">Add Book!</button>
+
+            </div>
+
+
+        </div>
+
+        <footer>
+            Owned by Karif.
+        </footer>
+
+    </div>
+
+
+   
+
+
+</body>
+</html>
