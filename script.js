@@ -11,7 +11,7 @@ Book.prototype.info = function () {
 };
 
 
-const coolBook = new Book("Harry Potter", "JR Tolkein", 332, "read" );
+const coolBook = new Book("Harry Potter", "JR Tolkein", 332, "read");
 //console.log(coolBook.info());
 
 const badBook = new Book("bad book", "POPO Tolkein", 33, "not read");
@@ -90,11 +90,11 @@ function refreshBookCards() {
 			}
 		})
 
-		name.textContent = myLibrary[i].name;
-		author.textContent = myLibrary[i].author;
-		pages.textContent = myLibrary[i].pages;
+		name.textContent = `Name: ${myLibrary[i].name}`;
+		author.textContent = `Author: ${myLibrary[i].author}`;
+		pages.textContent = `Pages: ${myLibrary[i].pages}`;
 		read.textContent = myLibrary[i].read;
-		remove.textContent = "Remove";
+		remove.textContent = "remove";
 		//add all the content to those cards.
 
 		read.setAttribute("status", read.textContent);
@@ -121,23 +121,23 @@ function addBookEntry(event) {
 
 }
 
-function removeBookEntry(event){
+function removeBookEntry(event) {
 	/* console.log(event.target.parentNode.getAttribute("data-bookindex")); */
 	myLibrary.splice(event.target.parentNode.getAttribute("data-bookindex"), 1);
 	refreshBookCards();
 }
 
-function toggleReadStatus(event){
+function toggleReadStatus(event) {
 	console.log("help")
 
-	if(event.target.getAttribute("status") === "read"){
+	if (event.target.getAttribute("status") === "read") {
 		event.target.textContent = "not read";
 		event.target.setAttribute("status", "not read");
 		myLibrary[event.target.parentNode.getAttribute("data-bookindex")].read = "not read";
 	}
 
 
-	else if(event.target.getAttribute("status") === "not read"){
+	else if (event.target.getAttribute("status") === "not read") {
 		event.target.textContent = "read";
 		event.target.setAttribute("status", "read");
 		myLibrary[event.target.parentNode.getAttribute("data-bookindex")].read = "read";
@@ -146,14 +146,14 @@ function toggleReadStatus(event){
 }
 
 
-function closePopup(event){
+function closePopup(event) {
 	if (bookForm.style.display === "block") {
 
 		if (!bookForm.contains(event.target) && !addBookButton.contains(event.target)) {
-			
+
 			bookForm.style.display = "none";
 			bookForm.parentNode.parentNode.style.display = "none";
-			
+
 		}
 	}
 }

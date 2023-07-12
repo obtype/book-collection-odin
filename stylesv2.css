@@ -40,7 +40,7 @@ body {
     flex-wrap: wrap;
 }
 
-.book-card {
+/* .book-card {
     height: 300px;
     width: 230px;
     background-color: #F8F8E7;
@@ -54,7 +54,7 @@ body {
     border: solid black 3px;
     height: 40px;
     margin: 5px;
-}
+} */
 
 .add-book-btn {
     background-color: #239e79;
@@ -116,4 +116,85 @@ form.add-book-form {
 
 .form-group {
     margin: 30px 15px;
+}
+
+
+
+/* Try starting from here: */
+
+
+/* The container element for the book card */
+.book-card {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /* margin-bottom: 10px; */
+    margin: 10px 20px;
+    background-color: #caddd3;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
+}
+
+/* The book name */
+.book-card .name {
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+
+/* The book author */
+.book-card .author {
+    margin-bottom: 5px;
+}
+
+/* The book pages */
+.book-card .pages {
+    margin-bottom: 10px;
+}
+
+/* The read-status button */
+.book-card .read-status {
+    font-family: "Ubuntu";
+    /* font-size: larger; */
+    font-weight: bolder;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 5px;
+    margin: 5px 0px;
+}
+
+/* The read-status button when the book is not read */
+.book-card .read-status[status="not read"] {
+    background-color: #f44336;
+}
+
+/* The remove button */
+.book-card .remove {
+    font-family: "Ubuntu";
+    /* font-size: larger; */
+    font-weight: bolder;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #f44336;
+    color: #fff;
+    border-radius: 5px;
+    margin: 5px 0px;
+}
+
+/* The read-status button when hovered */
+.book-card .read-status:hover {
+    background-color: #5bbe5b;
+}
+
+.book-card .read-status[status="not read"]:hover {
+    background-color: #dd3e3e;
+}
+
+/* The remove button when hovered */
+.book-card .remove:hover {
+    background-color: #dd3e3e;
 }
