@@ -11,10 +11,10 @@ Book.prototype.info = function () {
 };
 
 
-const coolBook = new Book("Harry Potter", "JR Tolkein", 332, "not read yet :(");
+const coolBook = new Book("Harry Potter", "JR Tolkein", 332, "read" );
 //console.log(coolBook.info());
 
-const badBook = new Book("bad book", "POPO Tolkein", 33, " read :)");
+const badBook = new Book("bad book", "POPO Tolkein", 33, "not read");
 
 let myLibrary = [coolBook, badBook];
 
@@ -46,7 +46,7 @@ cardPieces[3].classList.add("read-status");
 cardPieces[4].classList.add("remove");
 //console.log(cardPieces);
 
-function displayBookCards() {
+function refreshBookCards() {
 
 	while (bookshelf.firstChild) {
 		bookshelf.removeChild(bookshelf.firstChild);		//removes all the cards that are already on the bookshelf.
@@ -58,7 +58,7 @@ function displayBookCards() {
 
 		let bookCard = bookCardTemplate.cloneNode(true);
 		bookshelf.appendChild(bookCard);
-		bookCard.setAttribute("data-bookIndex", i)
+		bookCard.setAttribute("data-bookindex", i)
 		//console.log(bookCard.childNodes);
 
 
@@ -96,6 +96,11 @@ function displayBookCards() {
 		read.textContent = myLibrary[i].read;
 		remove.textContent = "Remove";
 		//add all the content to those cards.
+
+		read.setAttribute("status", read.textContent);
+
+		remove.addEventListener("click", removeBookEntry);
+		read.addEventListener("click", toggleReadStatus)
 	}
 
 
@@ -110,11 +115,50 @@ function addBookEntry(event) {
 	let formData = new FormData(bookForm);		//create a formData object using its constructor and passing in my forms node as the argument. 	
 	console.log(formData.get("read"));		//formData.get gets the data associated with a particular input, that was submitted. 
 
-	myLibrary.push(new Book(formData.get("name"), formData.get("author"), formData.get("pages"), formData.get("read")));
-
+	myLibrary.push(new Book(formData.get("name"), formData.get("author"), formData.get("pages"), formData.get("read") ? "read" : "not read"));
+	refreshBookCards();
 	//console.log(myLibrary);
 
 }
+
+function removeBookEntry(event){
+	/* console.log(event.target.parentNode.getAttribute("data-bookindex")); */
+	myLibrary.splice(event.target.parentNode.getAttribute("data-bookindex"), 1);
+	refreshBookCards();
+}
+
+function toggleReadStatus(event){
+	console.log("help")
+
+	if(event.target.getAttribute("status") === "read"){
+		event.target.textContent = "not read";
+		event.target.setAttribute("status", "not read");
+		myLibrary[event.target.parentNode.getAttribute("data-bookindex")].read = "not read";
+	}
+
+
+	else if(event.target.getAttribute("status") === "not read"){
+		event.target.textContent = "read";
+		event.target.setAttribute("status", "read");
+		myLibrary[event.target.parentNode.getAttribute("data-bookindex")].read = "read";
+	}
+
+}
+
+
+function closePopup(event){
+	if (bookForm.style.display === "block") {
+
+		if (!bookForm.contains(event.target) && !addBookButton.contains(event.target)) {
+			
+			bookForm.style.display = "none";
+			bookForm.parentNode.parentNode.style.display = "none";
+			
+		}
+	}
+}
+
+
 
 
 let bookForm = document.querySelector("form.add-book-form");
@@ -128,26 +172,16 @@ addBookButton.addEventListener("click", () => {
 });
 
 bookForm.addEventListener("submit", addBookEntry);
-bookForm.addEventListener("submit", displayBookCards);
+/* bookForm.addEventListener("submit", refreshBookCards); */
 bookForm.addEventListener("submit", () => {
 	bookForm.style.display = "none";
 	bookForm.parentNode.parentNode.style.display = "none";
 })
 
+document.addEventListener("click", closePopup);
 
-document.addEventListener("click", (event) => {
-	if (bookForm.style.display === "block") {
 
-		if (!bookForm.contains(event.target) && !addBookButton.contains(event.target)) {
-			
-			bookForm.style.display = "none";
-			bookForm.parentNode.parentNode.style.display = "none";
-			
-		}
-	}
-})
 
-console.log(bookForm.style.display);
-//bookForm.style.display = "block";
-displayBookCards();
+
+refreshBookCards();
 
