@@ -124,14 +124,14 @@ let addBookButton = document.querySelector(".add-book-btn");
 
 addBookButton.addEventListener("click", () => {
 	bookForm.style.display = "block";
-	bookForm.parentNode.style.display = "block";
+	bookForm.parentNode.parentNode.style.display = "block";
 });
 
 bookForm.addEventListener("submit", addBookEntry);
 bookForm.addEventListener("submit", displayBookCards);
 bookForm.addEventListener("submit", () => {
 	bookForm.style.display = "none";
-	bookForm.parentNode.style.display = "none";
+	bookForm.parentNode.parentNode.style.display = "none";
 })
 
 
@@ -141,7 +141,7 @@ document.addEventListener("click", (event) => {
 		if (!bookForm.contains(event.target) && !addBookButton.contains(event.target)) {
 			
 			bookForm.style.display = "none";
-			bookForm.parentNode.style.display = "none";
+			bookForm.parentNode.parentNode.style.display = "none";
 			
 		}
 	}
