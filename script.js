@@ -48,14 +48,14 @@ cardPieces[4].classList.add("remove");
 
 function displayBookCards() {
 
-	while(bookshelf.firstChild){
+	while (bookshelf.firstChild) {
 		bookshelf.removeChild(bookshelf.firstChild);		//removes all the cards that are already on the bookshelf.
 	}
 
 
 	for (let i = 0; i < myLibrary.length; i++) {
 
-		
+
 		let bookCard = bookCardTemplate.cloneNode(true);
 		bookshelf.appendChild(bookCard);
 		bookCard.setAttribute("data-bookIndex", i)
@@ -64,28 +64,28 @@ function displayBookCards() {
 
 		let name, author, pages, read, remove;
 
-		bookCard.childNodes.forEach( (element) => {
-			if(element.classList[0] === "name"){
+		bookCard.childNodes.forEach((element) => {
+			if (element.classList[0] === "name") {
 				name = element;
 			}
 		})
-		bookCard.childNodes.forEach( (element) => {
-			if(element.classList[0] === "author"){
+		bookCard.childNodes.forEach((element) => {
+			if (element.classList[0] === "author") {
 				author = element;
 			}
 		})
-		bookCard.childNodes.forEach( (element) => {
-			if(element.classList[0] === "pages"){
+		bookCard.childNodes.forEach((element) => {
+			if (element.classList[0] === "pages") {
 				pages = element;
 			}
 		})
-		bookCard.childNodes.forEach( (element) => {
-			if(element.classList[0] === "read-status"){
+		bookCard.childNodes.forEach((element) => {
+			if (element.classList[0] === "read-status") {
 				read = element;
 			}
 		})
-		bookCard.childNodes.forEach( (element) => {
-			if(element.classList[0] === "remove"){
+		bookCard.childNodes.forEach((element) => {
+			if (element.classList[0] === "remove") {
 				remove = element;
 			}
 		})
@@ -97,12 +97,12 @@ function displayBookCards() {
 		remove.textContent = "Remove";
 		//add all the content to those cards.
 	}
-	
+
 
 }
 
 
-function addBookEntry(event){
+function addBookEntry(event) {
 
 
 	event.preventDefault();		//prevents default form behavior i.e. sending the data to a server.
@@ -113,8 +113,8 @@ function addBookEntry(event){
 	myLibrary.push(new Book(formData.get("name"), formData.get("author"), formData.get("pages"), formData.get("read")));
 
 	//console.log(myLibrary);
-	
-} 
+
+}
 
 
 let bookForm = document.querySelector("form.add-book-form");
@@ -122,13 +122,32 @@ let bookForm = document.querySelector("form.add-book-form");
 let addBookButton = document.querySelector(".add-book-btn");
 
 
-addBookButton.addEventListener("click", displayBookCards);
-//console.log(addBookButton);
+addBookButton.addEventListener("click", () => {
+	bookForm.style.display = "block";
+	bookForm.parentNode.style.display = "block";
+});
 
 bookForm.addEventListener("submit", addBookEntry);
-bookForm.addEventListener("submit",	displayBookCards);
+bookForm.addEventListener("submit", displayBookCards);
+bookForm.addEventListener("submit", () => {
+	bookForm.style.display = "none";
+	bookForm.parentNode.style.display = "none";
+})
 
 
+document.addEventListener("click", (event) => {
+	if (bookForm.style.display === "block") {
 
+		if (!bookForm.contains(event.target) && !addBookButton.contains(event.target)) {
+			
+			bookForm.style.display = "none";
+			bookForm.parentNode.style.display = "none";
+			
+		}
+	}
+})
+
+console.log(bookForm.style.display);
+//bookForm.style.display = "block";
 displayBookCards();
 
