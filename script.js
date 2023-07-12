@@ -47,11 +47,19 @@ cardPieces[4].classList.add("remove");
 //console.log(cardPieces);
 
 function displayBookCards() {
+
+	while(bookshelf.firstChild){
+		bookshelf.removeChild(bookshelf.firstChild);		//removes all the cards that are already on the bookshelf.
+	}
+
+
 	for (let i = 0; i < myLibrary.length; i++) {
+
+		
 		let bookCard = bookCardTemplate.cloneNode(true);
 		bookshelf.appendChild(bookCard);
 		bookCard.setAttribute("data-bookIndex", i)
-		console.log(bookCard.childNodes);
+		//console.log(bookCard.childNodes);
 
 
 		let name, author, pages, read, remove;
@@ -104,7 +112,7 @@ function addBookEntry(event){
 
 	myLibrary.push(new Book(formData.get("name"), formData.get("author"), formData.get("pages"), formData.get("read")));
 
-	console.log(myLibrary);
+	//console.log(myLibrary);
 	
 } 
 
@@ -113,11 +121,14 @@ let bookForm = document.querySelector("form.add-book-form");
 
 let addBookButton = document.querySelector(".add-book-btn");
 
+
 addBookButton.addEventListener("click", displayBookCards);
-console.log(addBookButton);
+//console.log(addBookButton);
 
 bookForm.addEventListener("submit", addBookEntry);
+bookForm.addEventListener("submit",	displayBookCards);
 
 
-//displayBookCards();
+
+displayBookCards();
 
