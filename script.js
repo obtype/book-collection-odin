@@ -94,10 +94,29 @@ function displayBookCards() {
 }
 
 
-function addBookEntry(){
+function addBookEntry(event){
+
+
+	event.preventDefault();		//prevents default form behavior i.e. sending the data to a server.
+
+	let formData = new FormData(bookForm);		//create a formData object using its constructor and passing in my forms node as the argument. 	
+	console.log(formData.get("read"));		//formData.get gets the data associated with a particular input, that was submitted. 
+
+	myLibrary.push(new Book(formData.get("name"), formData.get("author"), formData.get("pages"), formData.get("read")));
+
+	console.log(myLibrary);
 	
 } 
 
+
+let bookForm = document.querySelector("form.add-book-form");
+
+let addBookButton = document.querySelector(".add-book-btn");
+
+addBookButton.addEventListener("click", displayBookCards);
+console.log(addBookButton);
+
+bookForm.addEventListener("submit", addBookEntry);
 
 
 //displayBookCards();
