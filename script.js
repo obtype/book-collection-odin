@@ -1,4 +1,19 @@
-function Book(name, author, pages, read) {   // Constructor for book objects.
+class Book {
+	constructor(name, author, pages, read){
+		this.name = name;
+		this.pages = pages;
+		this.author = author;
+		this.read = read;
+	}
+
+	info(){
+		return (`${this.name} by ${this.author}, ${this.pages} pages, ${this.read}`);
+	}
+
+}
+
+
+/* function Book(name, author, pages, read) {   // Constructor for book objects.
 	this.name = name;
 	this.pages = pages;
 	this.author = author;
@@ -8,7 +23,7 @@ function Book(name, author, pages, read) {   // Constructor for book objects.
 
 Book.prototype.info = function () {
 	return (`${this.name} by ${this.author}, ${this.pages} pages, ${this.read}`);
-};
+}; */
 
 
 const coolBook = new Book("Harry Potter", "JR Tolkein", 332, "read");
